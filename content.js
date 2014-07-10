@@ -65,7 +65,7 @@ function replaceImage(link){
       imgTag.height = imgTagY;
       imgTag.setAttribute("alt", "Download this using Asus Download Master!");
     }
-    if (link.style.backgroundImage != undefined){
+    if (link.style.backgroundImage != undefined && link.style.backgroundImage != "" && link.style.backgroundImage != null){
       var bgSize = link.style.backgroundSize
       var bgPosition = link.style.backgroundPosition;
       var bgRepeat = link.style.backgroundRepeat;
