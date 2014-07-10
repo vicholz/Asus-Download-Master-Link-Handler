@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings</title>
+</head>
+<body>
+
+<div id="container" style="width:400px; height:auto; position:relative; overflow:scroll; top: 0; left:0">
+  <div style="text-align:center;">
+    <span style="text-align:center;font-weight:bold;">Asus Download Master Link Handler Options</span><br>
+  </div>
+  <hr>
+  <label>
+    <input type="checkbox" id="enabled">Enabled
+  </label><br>
+  <hr>
+  <label>
+    Download Master URL:
+    <textarea rows="5" cols="35" id="downloadMasterURL"></textarea>
+  </label><br>
+  <hr>
+  <label>
+    <input type="checkbox" id="replaceImages">Replace Images Within Links
+  </label><br>
+  <hr>
+  <label>
+    <input type="checkbox" id="handleTorrents">Handle Torrents
+  </label><br>
+  <label>
+    <input type="checkbox" id="handleMagnets">Handle Magnets
+  </label><br>
+  <label>
+    <input type="checkbox" id="handleDiskImages">Handle Disk Images (*.iso, *.img)
+  </label><br>
+  <label>
+    <input type="checkbox" id="handleArchives">Handle Archives (*.zip, *.gz, *.tar, *.jar, *.7z, *.rar)
+  </label><br>
+  <label>
+    <input type="checkbox" id="handleImages">Handle Images (*.png, *.gif, *.jpeg, *.jpg, *.bmp, *.psd)
+  </label><br>
+  <label>
+    <input type="checkbox" id="handleVideos">Handle Videos (*.flv, *.mpg, *.mpeg, *.avi)
+  </label><br>
+  <label>
+    <input type="checkbox" id="handleOther">Handle Other Files (*.exe, *.msi)
+  </label><br>
+  <label>
+    <input type="checkbox" id="handleCustom">Handle Custom Files <input type="text" id="customFiles">
+  </label><br>
+  
+  <button id="save">Save</button><span id="status"></span>
+</div>
+<script src="options.js"></script>
+</body>
+</html>
