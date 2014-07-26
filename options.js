@@ -1,7 +1,6 @@
 function save_options() {
   var mEnabled = document.getElementById('enabled').checked;
   var mDownloadMasterURL = document.getElementById('downloadMasterURL').value;
-  var mReplaceImages = document.getElementById('replaceImages').checked;
   var mHandleTorrents = document.getElementById('handleTorrents').checked;
   var mHandleMagnets = document.getElementById('handleMagnets').checked;
   var mHandleDiskImages = document.getElementById('handleDiskImages').checked;
@@ -14,7 +13,6 @@ function save_options() {
   chrome.storage.sync.set({
     enabled: mEnabled,
     downloadMasterURL: mDownloadMasterURL,
-    replaceImages: mReplaceImages,
     handleTorrents: mHandleTorrents,
     handleMagnets: mHandleMagnets,
     handleDiskImages: mHandleDiskImages,
@@ -40,7 +38,6 @@ function restore_options() {
   chrome.storage.sync.get({
     enabled: true,
     downloadMasterURL: "http://192.168.1.1:8081/downloadmaster/dm_apply.cgi?action_mode=DM_ADD&download_type=5&again=no&usb_dm_url=",
-    replaceImages: false,
     handleTorrents: true,
     handleMagnets: true,
     handleDiskImages: false,
@@ -53,7 +50,6 @@ function restore_options() {
   }, function(items) {
     document.getElementById('enabled').checked = items.enabled;
     document.getElementById('downloadMasterURL').value = items.downloadMasterURL;
-    document.getElementById('replaceImages').checked = items.replaceImages;
     document.getElementById('handleTorrents').checked = items.handleTorrents;
     document.getElementById('handleMagnets').checked = items.handleMagnets;
     document.getElementById('handleDiskImages').checked = items.handleDiskImages;
