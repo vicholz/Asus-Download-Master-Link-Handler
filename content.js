@@ -38,9 +38,14 @@ function openLink(url){
   if (url == null || url == undefined){
     console.error("openLink: Invalid link object was specified!");
   }
-  createFrame();
-  console.log("openLink: Redirecting link to Asus Download Master URL...");
-  window.open(localStorage.getItem("mDownloadMasterURL") + encodeURIComponent(url),"tframe");
+  if ((document.URL).startsWith("https")){
+    console.log("Link origin is from https... Opening in new tab/window.");
+    window.open(localStorage.getItem("mDownloadMasterURL") + encodeURIComponent(url),"_blank");
+  }else{
+    createFrame();
+    console.log("openLink: Redirecting link to Asus Download Master URL...");
+    window.open(localStorage.getItem("mDownloadMasterURL") + encodeURIComponent(url),"tframe");
+  }
 }
 
 function checkLink(e,handle,filter){
