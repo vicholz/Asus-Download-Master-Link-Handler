@@ -37,14 +37,22 @@ window.onclick = function(e) { checkClick(e);};
 function openLink(url){
   if (url == null || url == undefined){
     console.error("openLink: Invalid link object was specified!");
-  }
-  if ((document.URL).startsWith("https")){
-    console.log("Link origin is from https... Opening in new tab/window.");
-    window.open(localStorage.getItem("mDownloadMasterURL") + encodeURIComponent(url),"_blank");
-  }else{
-    createFrame();
-    console.log("openLink: Redirecting link to Asus Download Master URL...");
-    window.open(localStorage.getItem("mDownloadMasterURL") + encodeURIComponent(url),"tframe");
+  } else {
+    url = localStorage.getItem("mDownloadMasterURL") + encodeURIComponent(url);
+    if ((document.URL).startsWith("https")){
+      console.trace("Link origin is from https... Opening in new tab/window: \n" + url);
+      window.open(url, "_blank");
+    } else {
+      console.trace("Sending request to DM URL: \n" + url);
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+        if (xhr.readyState==4 && xhr.status==200){
+          console.log("Success!");
+        }
+      }
+      xhr.open("GET", url, true);
+      xhr.send();
+    }
   }
 }
 
@@ -60,7 +68,7 @@ function checkLink(e,handle,filter){
   }
   if (localStorage.getItem(handle) === 'true'){
 	  var extensions = filter.replace("*","").replace(" ","").split(",");
-	  console.log("Checking for extensions [" + extensions + "]...");
+	  console.trace("Checking for extensions [" + extensions + "]...");
 	  
 	  for (var c = 0; c <= extensions.length - 1; c++){
 	    if (e.target.href.endsWith(extensions[c]) || e.target.href.startsWith(extensions[c])) { 
@@ -82,15 +90,4 @@ function checkClick(e){
   	checkLink(e,"mHandleVideos",link_other_file_postfixes);
   	checkLink(e,"mHandleCustom",localStorage.getItem("mCustomFiles"));
   }
-}
-
-function createFrame(){
-  var iframe = document.createElement("iframe");
-  iframe.name = "tframe";
-  iframe.width = "400";
-  iframe.height = "100";
-  iframe.style.border = 0;
-  iframe.style.display = "none";
-
-	document.body.appendChild(iframe.cloneNode(false));
 }
